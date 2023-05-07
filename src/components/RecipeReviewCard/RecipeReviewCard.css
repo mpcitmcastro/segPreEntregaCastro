@@ -1,5 +1,9 @@
-.container {
+.card {
+  display: grid;
+  gap: 1rem;
+  max-width: 60rem;
+  margin: 60px auto;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(0, 255, 242);
+  flex-wrap: wrap;
 }
