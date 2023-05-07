@@ -2,6 +2,7 @@ import "./Navbar.css";
 import ButtonJSX from "../ButtonJSX";
 import { BsFillCartFill } from "react-icons/bs";
 import { Button } from "@mui/material";
+//import { fas fa-shopping-cart } from "@FontAwesomeIcon";
 
 const Navbar = () => {
   const handleclick = (name) => {
@@ -24,10 +25,6 @@ const Navbar = () => {
       <Button href="/Grupos" variant="outlined">
         Grupos
       </Button>
-      {/* <ButtonJSX text="HOME" handleclick={handleclick} /> */}
-      {/* <ButtonJSX text="Contacto" handleclick={handleclick} /> */}
-      {/* <ButtonJSX text="Grupos" handleclick={handleclick} /> */}
-      <BsFillCartFill handleclick={handleclick} />
     </nav>
   );
 };

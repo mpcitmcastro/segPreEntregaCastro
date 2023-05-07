@@ -1,5 +1,6 @@
 .container {
   display: flex;
   justify-content: space-between;
-  background-color: blue;
+  margin: 0 10px;
+  background-color: rgb(215, 215, 243);
 }
