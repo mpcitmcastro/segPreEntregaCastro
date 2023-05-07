@@ -25,18 +25,37 @@ export default function RecipeReviewCard({ producto }) {
     setExpanded(!expanded);
   };
 
+  const onAddProduct = (product) => {
+    if (producto.find((item) => item.id === product.id)) {
+      const products = producto.map((item) =>
+        item.id === product.id ? { ...item, cantidad: item.cantidad + 1 } : item
+      );
+
+      setTotal(total + product.precio * product.cantidad);
+      setCountProducts(countProducts + product.cantidad);
+      return setAllProducts([...products]);
+    }
+
+    setTotal(total + product.precio * product.cantidad);
+    setCountProducts(countProducts + product.cantidad);
+    setAllProducts([...producto, product]);
+  };
+
+  const onDeleteProduct = (product) => {
+    const results = producto.filter((item) => item.id !== product.id);
+
+    setTotal(total - product.precio * product.cantdad);
+    setCountProducts(countProducts - product.cantidad);
+    setAllProducts(results);
+  };
+
   return (
     <Card sx={{ maxWidth: 450 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {producto.id}
+            {producto.marca}
           </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
         }
         title={producto.nombre}
         subheader={producto.precio}
@@ -48,10 +67,18 @@ export default function RecipeReviewCard({ producto }) {
         image={producto.img}
         alt="MPCIT"
       />
-      <Button variant="outlined" startIcon={<DeleteIcon />}>
+      <Button
+        onClick={() => onDeleteProduct(producto.cantidad)}
+        variant="outlined"
+        startIcon={<DeleteIcon />}
+      >
         Sacar
       </Button>
-      <Button variant="contained" endIcon={<SendIcon />}>
+      <Button
+        variant="contained"
+        onClick={() => onAddProduct(producto.cantidad)}
+        endIcon={<SendIcon />}
+      >
         Agregar
       </Button>
       <CardContent>
@@ -59,14 +86,6 @@ export default function RecipeReviewCard({ producto }) {
           {producto.marca}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
     </Card>
   );
 }
