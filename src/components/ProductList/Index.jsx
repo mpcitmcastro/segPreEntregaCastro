@@ -1,4 +1,5 @@
 import RecipeReviewCard from "../RecipeReviewCard";
+import "./Lista.css";
 
 const ProductList = ({ productos }) => {
   return (
